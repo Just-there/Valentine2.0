@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Forever</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* BASIC RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background: radial-gradient(circle at top left, #ffdde1, #ee9ca7, #0f1b21);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  position: relative;
+}
+
+/* WRAPPER */
+.wrapper {
+  position: relative;
+  width: min(90vw, 550px);
+}
+
+/* SVG WREATH */
+svg {
+  width: 100%;
+  height: auto;
+  animation: rotate 100s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* DRAW PATHS */
+.draw {
+  fill: none;
+  stroke-dasharray: 1500;
+  stroke-dashoffset: 1500;
+  animation: draw 3s ease forwards;
+}
+
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* LEAVES */
+.leaf {
+  stroke: #7fbfa8;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* STEMS */
+.stem {
+  stroke: #5fa38c;
+  stroke-width: 3;
+}
+
+/* PETALS */
+.petal {
+  fill: #f7b7c8;
+  opacity: 0;
+  transform-origin: center;
+  animation: bloom 1.2s ease forwards;
+}
+
+@keyframes bloom {
+  0% { opacity: 0; transform: scale(0.2) rotate(0deg); }
+  100% { opacity: 1; transform: scale(1) rotate(360deg); }
+}
+
+/* PETAL SEQUENCE */
+.p1 { animation-delay: 1.2s; }
+.p2 { animation-delay: 1.8s; }
+.p3 { animation-delay: 2.4s; }
+.p4 { animation-delay: 3s; }
+.p5 { animation-delay: 3.6s; }
+.p6 { animation-delay: 4.2s; }
+.p7 { animation-delay: 4.8s; }
+.p8 { animation-delay: 5.4s; }
+
+/* TEXT */
+.text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  animation: textIn 2s ease forwards;
+  animation-delay: 5.6s;
+}
+
+@keyframes textIn {
+  to { opacity: 1; }
+}
+
+.text h1 {
+  font-size: clamp(2rem, 6vw, 3rem);
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.text p {
+  font-size: clamp(1rem, 4vw, 1.3rem);
+  opacity: 0.85;
+  line-height: 1.7;
+}
+
+/* FALLING PETALS */
+.petal-fall {
+  position: fixed;
+  top: -40px;
+  font-size: 18px;
+  animation: fall linear infinite;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg) scale(1.1);
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<!-- FLOWER WREATH -->
+<svg viewBox="0 0 500 500">
+
+  <!-- WREATH BASE -->
+  <path class="draw leaf"
+    d="M250 40
+       C100 60 20 200 80 340
+       C140 460 360 460 420 340
+       C480 200 400 60 250 40" />
+
+  <!-- FLOWERS -->
+  <!-- Flower 1 -->
+  <g transform="translate(180 120)">
+    <ellipse class="petal p1" cx="0" cy="-12" rx="10" ry="18"/>
+    <ellipse class="petal p1" cx="12" cy="0" rx="10" ry="18"/>
+    <ellipse class="petal p1" cx="0" cy="12" rx="10" ry="18"/>
+    <ellipse class="petal p1" cx="-12" cy="0" rx="10" ry="18"/>
+  </g>
+
+  <!-- Flower 2 -->
+  <g transform="translate(320 140)">
+    <ellipse class="petal p2" cx="0" cy="-12" rx="10" ry="18"/>
+    <ellipse class="petal p2" cx="12" cy="0" rx="10" ry="18"/>
+    <ellipse class="petal p2" cx="0" cy="12" rx="10" ry="18"/>
+    <ellipse class="petal p2" cx="-12" cy="0" rx="10" ry="18"/>
+  </g>
+
+  <!-- Flower 3 -->
+  <g transform="translate(250 360)">
+    <ellipse class="petal p3" cx="0" cy="-12" rx="10" ry="18"/>
+    <ellipse class="petal p3" cx="12" cy="0" rx="10" ry="18"/>
+    <ellipse class="petal p3" cx="0" cy="12" rx="10" ry="18"/>
+    <ellipse class="petal p3" cx="-12" cy="0" rx="10" ry="18"/>
+  </g>
+
+  <!-- Flower 4 -->
+  <g transform="translate(200 250)">
+    <ellipse class="petal p4" cx="0" cy="-10" rx="8" ry="15"/>
+    <ellipse class="petal p4" cx="10" cy="0" rx="8" ry="15"/>
+    <ellipse class="petal p4" cx="0" cy="10" rx="8" ry="15"/>
+    <ellipse class="petal p4" cx="-10" cy="0" rx="8" ry="15"/>
+  </g>
+
+  <!-- Flower 5 -->
+  <g transform="translate(300 300)">
+    <ellipse class="petal p5" cx="0" cy="-10" rx="8" ry="15"/>
+    <ellipse class="petal p5" cx="10" cy="0" rx="8" ry="15"/>
+    <ellipse class="petal p5" cx="0" cy="10" rx="8" ry="15"/>
+    <ellipse class="petal p5" cx="-10" cy="0" rx="8" ry="15"/>
+  </g>
+
+  <!-- Flower 6 -->
+  <g transform="translate(250 200)">
+    <ellipse class="petal p6" cx="0" cy="-9" rx="7" ry="14"/>
+    <ellipse class="petal p6" cx="9" cy="0" rx="7" ry="14"/>
+    <ellipse class="petal p6" cx="0" cy="9" rx="7" ry="14"/>
+    <ellipse class="petal p6" cx="-9" cy="0" rx="7" ry="14"/>
+  </g>
+
+  <!-- Flower 7 -->
+  <g transform="translate(280 180)">
+    <ellipse class="petal p7" cx="0" cy="-8" rx="6" ry="12"/>
+    <ellipse class="petal p7" cx="8" cy="0" rx="6" ry="12"/>
+    <ellipse class="petal p7" cx="0" cy="8" rx="6" ry="12"/>
+    <ellipse class="petal p7" cx="-8" cy="0" rx="6" ry="12"/>
+  </g>
+
+  <!-- Flower 8 -->
+  <g transform="translate(220 320)">
+    <ellipse class="petal p8" cx="0" cy="-8" rx="6" ry="12"/>
+    <ellipse class="petal p8" cx="8" cy="0" rx="6" ry="12"/>
+    <ellipse class="petal p8" cx="0" cy="8" rx="6" ry="12"/>
+    <ellipse class="petal p8" cx="-8" cy="0" rx="6" ry="12"/>
+  </g>
+
+</svg>
+
+<!-- TEXT -->
+<div class="text">
+  <h1>Forever</h1>
+  <p>
+   (its not like im gonna <br>let you go anywhere before)
+  </p>
+</div>
+
+</div>
+
+<!-- FALLING PETALS SCRIPT -->
+<script>
+function createPetal() {
+  const petal = document.createElement("div");
+  petal.className = "petal-fall";
+  petal.textContent = ["🌸","🌷","💮"][Math.floor(Math.random()*3)];
+  petal.style.left = Math.random() * 100 + "vw";
+  petal.style.fontSize = 14 + Math.random() * 12 + "px";
+  petal.style.animationDuration = 6 + Math.random() * 6 + "s";
+  document.body.appendChild(petal);
+
+  setTimeout(() => petal.remove(), 14000);
+}
+
+setInterval(createPetal, 400);
+</script>
+
+</body>
+</html>
